@@ -1,0 +1,28 @@
+# .github/workflows/jira-exporter.yml
+name: Jira Exporter Workflow
+
+on:
+    workflow_dispatch:  # Allows manual triggering of the workflow
+    schedule:
+        - cron: '0 */1 * * *'  # This will run every hour (cron expression)
+
+jobs:
+    run-integration:
+        runs-on: ubuntu-latest  # This will run the workflow on an Ubuntu environment
+        timeout-minutes: 30  # Set a time limit for the job
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2  # This checks out your code so the workflow can access it
+
+            - name: Run Jira Integration
+              uses: port-labs/ocean-sail@v1  # Using the 'ocean-sail' GitHub action for Jira integration
+              with:
+                type: jira
+                port_client_id: ${{ secrets.qdKjriy8LBFM9cC5O98BTNdf9MWdyEBt }}  # The PORT_CLIENT_ID secret stored in GitHub
+                port_client_secret: ${{ secrets.rEIWeX1eqpMcy2WRydAtJQNLZV5NwJirL8In8YmiIICojUtTvmKz9CNMYxaQUAe1 }}  # The PORT_CLIENT_SECRET secret stored in GitHub
+                port_base_url: "https://api.getport.io"  # The base URL for the Port API
+                config: |
+                    jira_host: "https://jay8185.atlassian.net/"  # Replace with your Jira domain
+                    atlassian_user_email: ${{ secrets.patel.jay@northeastern.edu }}  # Your Atlassian email (secret)
+                    atlassian_user_token: ${{ secrets.ATATT3xFfGF0pnViNQT7bMgKSrq2VVHqXzKsRtuHiXEjWbuOLPz4w8VfHRIOD21e0uxhXtkVfJg4NAxOmYH5xfEh-FBxE_wepm-KAqspyGVnY_sFoCzNZMw4sUmeUvO8NaGaV9IbU0F9omnRMMMwMdjYbLvsr_6tr4NPKUfW-7x8Z9cU9TNaSSM=76422BBC }}  # Your Atlassian API Token (secret)
