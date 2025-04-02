@@ -1,4 +1,3 @@
-# .github/workflows/jira-exporter.yml
 name: Jira Exporter Workflow
 
 on:
