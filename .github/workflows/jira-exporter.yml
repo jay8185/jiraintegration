@@ -20,6 +20,9 @@ jobs:
                 port_client_secret: ${{ secrets.PORT_CLIENT_SECRET }}
                 port_base_url: "https://api.us.getport.io"
                 config: |
-                    jira_host: "ENTER VALUE HERE"
+                    jira_host: "https://jay8185.atlassian.net"
                     atlassian_user_email: ${{ secrets.atlassianUserEmail }}
                     atlassian_user_token: ${{ secrets.atlassianUserToken }}
+                initialize_port_resources: true
+                platform: linux/amd64
+                version: latest
